@@ -2,7 +2,7 @@ const Collection = require('../models/collection')
 const Product = require('../models/product')
 const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors')
-const { cloudinary } = require('../utils/cloudinary')
+// const { cloudinary } = require('../utils/cloudinary')
 
 // create new collection => /api/v1/collection/new
 exports.newCollection = catchAsyncErrors(async (req, res, next) => {
@@ -17,44 +17,50 @@ exports.newCollection = catchAsyncErrors(async (req, res, next) => {
         let wideAssetResult;
 
         if (req.body.wideAssetFormat === "Image") {
-            wideAssetResult = await cloudinary.uploader.upload(req.body.wideAsset, {
-                folder: 'collections'
-            })
+            // upload media as image
+            // wideAssetResult = await cloudinary.uploader.upload(req.body.wideAsset, {
+            //     folder: 'collections'
+            // })
         } else {
-            wideAssetResult = await cloudinary.uploader.upload(req.body.wideAsset, {
-                folder: 'collections',
-                resource_type: "video",
-                chunk_size: 6000000,
-                timeout: 1200000
-            })
+            // upload media as video
+            // wideAssetResult = await cloudinary.uploader.upload(req.body.wideAsset, {
+            //     folder: 'collections',
+            //     resource_type: "video",
+            //     chunk_size: 6000000,
+            //     timeout: 1200000
+            // })
         }
 
-        mediaLinks.push({
-            public_id: wideAssetResult.public_id,
-            url: wideAssetResult.secure_url,
-            format: req.body.wideAssetFormat,
-        })
+        // push to memory
+        // mediaLinks.push({
+        //     public_id: wideAssetResult.public_id,
+        //     url: wideAssetResult.secure_url,
+        //     format: req.body.wideAssetFormat,
+        // })
 
         let mobileAssetResult;
 
         if (req.body.mobileAssetFormat === "Image") {
-            mobileAssetResult = await cloudinary.uploader.upload(req.body.mobileAsset, {
-                folder: 'collections'
-            })
+            // upload media as image
+            // mobileAssetResult = await cloudinary.uploader.upload(req.body.mobileAsset, {
+            //     folder: 'collections'
+            // })
         } else {
-            mobileAssetResult = await cloudinary.uploader.upload(req.body.mobileAsset, {
-                folder: 'collections',
-                resource_type: "video",
-                chunk_size: 6000000,
-                timeout: 1200000
-            })
+            // upload media as video
+            // mobileAssetResult = await cloudinary.uploader.upload(req.body.mobileAsset, {
+            //     folder: 'collections',
+            //     resource_type: "video",
+            //     chunk_size: 6000000,
+            //     timeout: 1200000
+            // })
         }
 
-        mediaLinks.push({
-            public_id: mobileAssetResult.public_id,
-            url: mobileAssetResult.secure_url,
-            format: req.body.mobileAssetFormat
-        })
+        // push to memory
+        // mediaLinks.push({
+        //     public_id: mobileAssetResult.public_id,
+        //     url: mobileAssetResult.secure_url,
+        //     format: req.body.mobileAssetFormat
+        // })
 
         req.body.media = mediaLinks
         req.body.user = req.user.id
@@ -181,17 +187,17 @@ exports.updateCollection = catchAsyncErrors(async (req, res, next) => {
         if (req.body.wideAsset !== oldVersion.media[0].url) { // check if request contains a new wide asset
             let wideAssetResult;
             // Deleting associated media on cloudinary
-            wideAssetResult = await cloudinary.uploader.destroy(collection.media[0].public_id)
+            // wideAssetResult = await cloudinary.uploader.destroy(collection.media[0].public_id)
 
 
             // upload new media
-            wideAssetResult = await cloudinary.uploader.upload(req.body.wideAsset, {
-                folder: 'collections'
-            })
+            // wideAssetResult = await cloudinary.uploader.upload(req.body.wideAsset, {
+            //     folder: 'collections'
+            // })
 
-            newVersion.media[0].format = req.body.wideAssetFormat;
-            newVersion.media[0].public_id = wideAssetResult.public_id;
-            newVersion.media[0].url = wideAssetResult.secure_url;
+            // newVersion.media[0].format = req.body.wideAssetFormat;
+            // newVersion.media[0].public_id = wideAssetResult.public_id;
+            // newVersion.media[0].url = wideAssetResult.secure_url;
 
         } else { // logic to retain former media if there are none
             newVersion.media[0] = oldVersion.media[0];
@@ -201,17 +207,17 @@ exports.updateCollection = catchAsyncErrors(async (req, res, next) => {
         if (req.body.mobileAsset !== oldVersion.media[1].url) { // check if request contains a new wide asset
             let mobileAssetResult;
             // Deleting associated media on cloudinary
-            mobileAssetResult = await cloudinary.uploader.destroy(collection.media[1].public_id)
+            // mobileAssetResult = await cloudinary.uploader.destroy(collection.media[1].public_id)
 
 
             // upload new media
-            mobileAssetResult = await cloudinary.uploader.upload(req.body.mobileAsset, {
-                folder: 'collections'
-            })
+            // mobileAssetResult = await cloudinary.uploader.upload(req.body.mobileAsset, {
+            //     folder: 'collections'
+            // })
 
-            newVersion.media[1].format = req.body.mobileAssetFormat;
-            newVersion.media[1].public_id = mobileAssetResult.public_id;
-            newVersion.media[1].url = mobileAssetResult.secure_url;
+            // newVersion.media[1].format = req.body.mobileAssetFormat;
+            // newVersion.media[1].public_id = mobileAssetResult.public_id;
+            // newVersion.media[1].url = mobileAssetResult.secure_url;
 
         } else { // logic to retain former media if there are none
             newVersion.media[1] = oldVersion.media[1];
@@ -243,7 +249,7 @@ exports.deleteCollection = catchAsyncErrors(async (req, res, next) => {
 
     // Deleting associated media on cloudinary
     for (let i = 0; i < collection.media.length; i++) {
-        const result = await cloudinary.uploader.destroy(collection.media[i].public_id);
+        // const result = await cloudinary.uploader.destroy(collection.media[i].public_id);
     }
 
     await collection.remove()

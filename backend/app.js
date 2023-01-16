@@ -18,17 +18,15 @@ app.use(fileUpload())
 app.use(express.static(path.join(__dirname, 'public' )))
 
 // Import all routes
-// const product = require('./routes/product')
-// const collection = require('./routes/collection')
-// const auth = require('./routes/auth')
-// const order = require('./routes/order') 
-// const payment = require('./routes/payment')
+const product = require('./routes/product')
+const collection = require('./routes/collection')
+const auth = require('./routes/auth')
+const order = require('./routes/order') 
 
-// app.use('/api/v1', product)
-// app.use('/api/v1', collection)
-// app.use('/api/v1', auth)
-// app.use('/api/v1', order)
-// app.use('/api/v1', payment)
+app.use('/api/v1', product)
+app.use('/api/v1', collection)
+app.use('/api/v1', auth)
+app.use('/api/v1', order)
 
 // Middleware to handle errors
 app.use(errorMiddleware)

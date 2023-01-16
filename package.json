@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/solasamuel/recoBackendExample#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.1",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
@@ -29,7 +30,8 @@
     "path": "^0.12.7",
     "stripe": "^11.6.0",
     "uuid": "^9.0.0",
-    "validation": "^0.0.1"
+    "validation": "^0.0.1",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
