@@ -1,0 +1,35 @@
+{
+  "name": "recobackendexample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backend/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solasamuel/recoBackendExample.git"
+  },
+  "author": "sola samuel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/solasamuel/recoBackendExample/issues"
+  },
+  "homepage": "https://github.com/solasamuel/recoBackendExample#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.8.3",
+    "path": "^0.12.7",
+    "stripe": "^11.6.0",
+    "uuid": "^9.0.0",
+    "validation": "^0.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
